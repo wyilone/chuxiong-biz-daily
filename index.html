@@ -102,7 +102,61 @@
   .pg-btn .dir { color: var(--red); font-weight: 800; display: block; font-size: 12px; margin-bottom: 2px; }
   .pg-btn:disabled { opacity: .4; cursor: default; }
 
-  /* ===== 页脚 ===== */
+    /* ===== 汇总统计 & 往期看板 ===== */
+  .arch-wrap { max-width: 1060px; margin: 0 auto; padding: 0 20px; }
+  .sum-panel { background: #fff; border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 2px 10px rgba(0,0,0,.05); padding: 20px 22px; }
+  .sum-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .sum-card { text-align: center; background: var(--bg); border-radius: 10px; padding: 12px 6px; border-top: 3px solid #2f7d4f; }
+  .sum-card .num { font-size: 26px; font-weight: 800; color: #2f7d4f; line-height: 1.15; }
+  .sum-card.t2 { border-top-color: var(--red); } .sum-card.t2 .num { color: var(--red); }
+  .sum-card.t3 { border-top-color: var(--orange); } .sum-card.t3 .num { color: var(--orange); }
+  .sum-card.t4 { border-top-color: var(--blue); } .sum-card.t4 .num { color: var(--blue); }
+  .sum-card.t5 { border-top-color: #6b4f9e; } .sum-card.t5 .num { color: #6b4f9e; }
+  .sum-card .lbl { font-size: 12px; color: var(--gray); margin-top: 2px; }
+  .tb-title { font-size: 15px; font-weight: 800; margin: 22px 0 10px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .tb-title small { color: var(--gray); font-weight: 400; font-size: 12px; }
+  .trend-row { display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 10px; cursor: pointer; transition: background .15s; }
+  .trend-row:hover { background: var(--bg); }
+  .trend-row.current { background: #f2fbf5; outline: 1px dashed rgba(47,125,79,.4); }
+  .tr-label { width: 86px; flex-shrink: 0; font-size: 13px; font-weight: 700; line-height: 1.3; }
+  .tr-label small { display: block; color: var(--gray); font-weight: 400; font-size: 11.5px; }
+  .tr-bar { flex: 1; display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: #eef0f3; }
+  .bar-seg { height: 100%; display: block; }
+  .tr-num { width: 74px; text-align: right; font-size: 13px; color: var(--gray); flex-shrink: 0; }
+  .tb-legend { display: flex; gap: 16px; font-size: 12px; color: var(--gray); margin-top: 10px; flex-wrap: wrap; }
+  .tb-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; }
+  .dl-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 10px; border: 1px solid var(--line); margin: 8px 0; background: #fff; }
+  .dl-item.past { opacity: .55; }
+  .dl-item .dl-t { flex: 1; font-size: 13.5px; line-height: 1.45; }
+  .dl-item .dl-t small { display: block; color: var(--gray); font-size: 12px; }
+  .dl-badge { flex-shrink: 0; font-size: 12px; font-weight: 700; border-radius: 6px; padding: 3px 10px; white-space: nowrap; }
+  .dl-badge.hot { background: #fdeeee; color: var(--red); border: 1px solid #f3c7c7; }
+  .dl-badge.warn { background: #fdf3e7; color: #a35200; border: 1px solid #f3ddc2; }
+  .dl-badge.ok { background: #eef2f9; color: var(--blue); border: 1px solid #d7dfeb; }
+  .dl-badge.past { background: #f0f0f2; color: #9a9da3; border: 1px solid var(--line); }
+  .date-jump { display: flex; gap: 10px; margin: 4px 0 16px; flex-wrap: wrap; }
+  .date-jump select { flex: 1; min-width: 220px; font-family: inherit; font-size: 14px; padding: 10px 14px; border: 1.5px solid #d8cdea; border-radius: 10px; background: #fff; color: var(--ink); outline: none; cursor: pointer; }
+  .date-jump select:focus { border-color: #6b4f9e; }
+  .jump-btn { font-family: inherit; font-size: 14px; font-weight: 700; color: #fff; background: #6b4f9e; border: none; border-radius: 10px; padding: 10px 22px; cursor: pointer; transition: background .15s; white-space: nowrap; }
+  .jump-btn:hover { background: #593d87; }
+  .arch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .arch-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; cursor: pointer; position: relative; transition: transform .2s, box-shadow .2s; border-top: 3px solid #6b4f9e; display: flex; flex-direction: column; }
+  .arch-card:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(80,60,130,.12); }
+  .arch-card.current { border-color: #6b4f9e; box-shadow: 0 6px 18px rgba(107,79,158,.14); }
+  .ac-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+  .ac-issue { font-size: 12px; color: #fff; background: #6b4f9e; border-radius: 5px; padding: 1px 8px; }
+  .ac-date { font-size: 13px; color: var(--gray); }
+  .ac-flag { font-size: 11px; border-radius: 20px; padding: 1px 9px; margin-left: auto; }
+  .ac-flag.new { background: #fdeeee; color: var(--red); border: 1px solid #f3c7c7; }
+  .ac-flag.cur { background: #f2fbf5; color: #2f7d4f; border: 1px solid #bfe3cc; }
+  .ac-stats { font-size: 12.5px; color: var(--gray); margin: 2px 0 8px; }
+  .ac-stats b { color: var(--ink); font-size: 14px; }
+  .ac-note { font-size: 13px; color: #4a4d52; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .ac-go { font-size: 13px; color: #6b4f9e; font-weight: 700; margin-top: 12px; }
+  @media (max-width: 960px) { .sum-grid { grid-template-columns: repeat(3, 1fr); } .arch-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .sum-grid { grid-template-columns: repeat(2, 1fr); } .arch-grid { grid-template-columns: 1fr; } }
+
+/* ===== 页脚 ===== */
   footer { max-width: 1060px; margin: 0 auto; padding: 26px 20px 40px; }
   .src-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; font-size: 13px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
   .src-table th { background: var(--red); color: #fff; padding: 9px 14px; text-align: left; font-weight: 600; }
@@ -168,6 +222,31 @@
   </div>
   <div class="body" id="d-body"></div>
 </div>
+
+<!-- 汇总商机统计（跨期） -->
+<section class="arch-wrap">
+  <div class="section-head"><span class="bar" style="background:#2f7d4f"></span><h2 style="color:#2f7d4f">汇总商机统计</h2><span class="tip">跨期累计视角</span></div>
+  <p class="sec-desc" id="sumDesc"></p>
+  <div class="sum-panel">
+    <div class="sum-grid" id="sumGrid"></div>
+    <div class="tb-title">📊 各期线索规模对比 <small>（点击行可跳转当日看板）</small></div>
+    <div id="trendRows"></div>
+    <div class="tb-legend"><span><i style="background:#C00000"></i>重点商机</span><span><i style="background:#d96a00"></i>中期跟踪</span><span><i style="background:#4a5f85"></i>政策动向</span></div>
+    <div class="tb-title">⏱️ 在途紧急时限 <small>（倒计时按打开页面当日计算）</small></div>
+    <div id="dlList"></div>
+  </div>
+</section>
+
+<!-- 往期看板 -->
+<section class="arch-wrap">
+  <div class="section-head"><span class="bar" style="background:#6b4f9e"></span><h2 style="color:#6b4f9e">往期看板</h2><span class="tip">按日期跳转</span></div>
+  <p class="sec-desc">最新期为主页面（index.html），往期按 archive-日期.html 存档 · 跳转链接自动附加防缓存参数</p>
+  <div class="date-jump">
+    <select id="dateSelect" aria-label="选择日报日期"></select>
+    <button class="jump-btn" onclick="jumpToDate()">查看当日看板 →</button>
+  </div>
+  <div class="arch-grid" id="archGrid"></div>
+</section>
 
 <!-- 来源附录 -->
 <footer id="foot"></footer>
@@ -443,6 +522,73 @@ window.addEventListener("hashchange", () => {
 (function initFromHash() {
   const m = location.hash.match(/^#o(\d+)$/);
   if (m) openDetail(parseInt(m[1]));
+})();
+
+/* ============ 往期看板 & 汇总统计数据（每期新增后维护 ISSUES / DEADLINES 两个数组） ============ */
+const ISSUES = [
+  { date: "2026-10-15", issue: 3, focus: 3, track: 4, policy: 3, total: 10, latest: true,  highlights: "教育云运维招标86.26万（限电信持证企业）/ 工信部5G工厂名录遴选 / 医保“五改五变”数字化 / 无线电监测站升级中标 / 宁静小区噪声监测物联网" },
+  { date: "2026-10-14", issue: 2, focus: 3, track: 5, policy: 2, total: 10, latest: false, highlights: "风电装备百亿级产业集群 / 长护险全州启动（第六险落地）/ 高新区项目密集投产 / 党建引领“3+2”基层治理调研 / 高新区工业用地挂牌成交" },
+  { date: "2026-10-13", issue: 1, focus: 3, track: 8, policy: 4, total: 15, latest: false, highlights: "创刊号：市中医医院信息化市场调查 / 长护险制度落地 / 远景风机基地首台机组下线 / 楚景高速获批复工 / 智算中心与智慧充电网招商在册 / 种业·客货邮等8条中期线索" }
+];
+const DEADLINES = [
+  { d: "2026-10-15", t: "《楚雄教育云》运维项目 · 获取招标文件截止", s: "政采云平台获取，逾期丧失投标资格" },
+  { d: "2026-10-16", t: "州中级人民法院计算机/服务器采购 · 获取招标文件截止", s: "政采云平台" },
+  { d: "2026-10-23", t: "州工信局工业奖补资金监管服务 · 磋商响应截止", s: "10-23 09:30 前提交响应文件" },
+  { d: "2026-10-29", t: "《楚雄教育云》运维项目 · 投标截止并开标", s: "10-29 09:00 · 永安路696号1号开标厅" },
+  { d: "2026-10-30", t: "工信部5G工厂名录 · 企业平台填报截止", s: "5G+工业互联网发展管理平台（5gii.aii-alliance.org）" },
+  { d: "2026-11-13", t: "工信部5G工厂名录 · 地方初审推荐截止", s: "州工信局线上完成推荐" }
+];
+
+function issueHref(it) { const v = it.date.replace(/-/g, ""); return it.latest ? "index.html?v=" + v : "archive-" + it.date + ".html?v=" + v; }
+function currentIssue() {
+  const m = location.pathname.match(/archive-(\d{4}-\d{2}-\d{2})\.html/);
+  if (m) { const hit = ISSUES.find(i => i.date === m[1]); if (hit) return hit; }
+  return ISSUES.find(i => i.latest) || ISSUES[0];
+}
+function jumpToDate() { const sel = $("dateSelect"); const it = ISSUES.find(i => i.date === sel.value); if (it) location.href = issueHref(it); }
+
+(function renderSummary() {
+  const cur = currentIssue();
+  const sum = { issues: ISSUES.length, total: 0, focus: 0, track: 0, policy: 0 };
+  ISSUES.forEach(i => { sum.total += i.total; sum.focus += i.focus; sum.track += i.track; sum.policy += i.policy; });
+  $("sumDesc").textContent = "当前浏览：第 " + cur.issue + " 期（" + cur.date + "）· 已累计发布 " + sum.issues + " 期 · 累计线索 " + sum.total + " 条次（含跨期跟踪更新项）";
+  $("sumGrid").innerHTML = [
+    ["", sum.issues, "已发期数"], ["t2", sum.focus, "重点商机·累计"], ["t3", sum.track, "中期跟踪·累计"], ["t4", sum.policy, "政策动向·累计"], ["t5", sum.total, "累计线索·条次"]
+  ].map(a => `<div class="sum-card ${a[0]}"><div class="num">${a[1]}</div><div class="lbl">${a[2]}</div></div>`).join("");
+
+  const maxT = Math.max(...ISSUES.map(i => i.total));
+  $("trendRows").innerHTML = ISSUES.map(i => {
+    const pct = n => (n / maxT * 100).toFixed(1);
+    return `<div class="trend-row ${i.date === cur.date ? "current" : ""}" onclick="location.href='${issueHref(i)}'">
+      <div class="tr-label">第 ${i.issue} 期<small>${i.date}</small></div>
+      <div class="tr-bar"><span class="bar-seg" style="width:${pct(i.focus)}%;background:#C00000"></span><span class="bar-seg" style="width:${pct(i.track)}%;background:#d96a00"></span><span class="bar-seg" style="width:${pct(i.policy)}%;background:#4a5f85"></span></div>
+      <div class="tr-num"><b style="color:var(--ink)">${i.total}</b> 条</div>
+    </div>`;
+  }).join("");
+
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  $("dlList").innerHTML = DEADLINES.map(d => {
+    const dl = Math.round((new Date(d.d + "T00:00:00") - today) / 86400000);
+    let cls = "ok", txt = "剩 " + dl + " 天";
+    if (dl < 0) { cls = "past"; txt = "已截止"; }
+    else if (dl === 0) { cls = "hot"; txt = "⚠️ 今日截止"; }
+    else if (dl <= 7) { cls = "hot"; txt = "剩 " + dl + " 天"; }
+    else if (dl <= 30) { cls = "warn"; txt = "剩 " + dl + " 天"; }
+    return `<div class="dl-item ${dl < 0 ? "past" : ""}"><div class="dl-t">${d.t}<small>${d.d} · ${d.s}</small></div><span class="dl-badge ${cls}">${txt}</span></div>`;
+  }).join("");
+
+  $("dateSelect").innerHTML = ISSUES.map(i => `<option value="${i.date}" ${i.date === cur.date ? "selected" : ""}>${i.date}（第 ${i.issue} 期 · ${i.total} 条线索）${i.latest ? " · 最新" : ""}</option>`).join("");
+  $("archGrid").innerHTML = ISSUES.map(i => {
+    const flags = [];
+    if (i.latest) flags.push('<span class="ac-flag new">最新</span>');
+    if (i.date === cur.date) flags.push('<span class="ac-flag cur">正在浏览</span>');
+    return `<div class="arch-card ${i.date === cur.date ? "current" : ""}" onclick="location.href='${issueHref(i)}'">
+      <div class="ac-top"><span class="ac-issue">第 ${i.issue} 期</span><span class="ac-date">${i.date}</span>${flags.join("")}</div>
+      <div class="ac-stats">🔴 ${i.focus} · 🟠 ${i.track} · 🔵 ${i.policy} · 共 <b>${i.total}</b> 条</div>
+      <div class="ac-note">${i.highlights}</div>
+      <div class="ac-go">查看完整看板 →</div>
+    </div>`;
+  }).join("");
 })();
 
 /* ============ 附录 ============ */
