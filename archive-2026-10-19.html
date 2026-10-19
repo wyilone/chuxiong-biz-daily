@@ -209,6 +209,11 @@
   </div>
 </div>
 
+<!-- 商机汇总导出工具条 -->
+<div class="export-bar" style="max-width:1060px;margin:14px auto 0;padding:0 20px;display:flex;justify-content:flex-end;gap:10px">
+  <button onclick="exportCSV()" title="将本期全部商机汇总导出为 Excel/WPS 可直接打开的 CSV 表格" style="background:#C00000;color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 2px 6px rgba(192,0,0,.25)">📥 导出商机汇总（Excel可用）</button>
+</div>
+
 <!-- 商机列表（JS 渲染） -->
 <main id="main"></main>
 
@@ -375,6 +380,9 @@ const OPPS = [
     todo: "两周内完成项目前序标段信息梳理与州疾控中心首轮对接"
   }
 ];
+
+/* 数据桥：供外部脚本（generate_biz_summary.py）提取本期商机数据生成 Excel */
+window.__OPPS_JSON__ = '##START##' + JSON.stringify(OPPS) + '##END##';
 
 /* ============ 上期（第4期）跟踪进展 ============ */
 const FOLLOW_UP = [
@@ -575,6 +583,30 @@ $("foot").innerHTML = `
     ${SOURCES.map(s => `<tr><td><b>${s[0]}</b></td><td>${s[1]}</td></tr>`).join("")}
   </table>
   <p class="note">本期为周末平稳期简报：10-17/18为周末、10-19为周一，截至检索时点三站均无新发布<br>本期重点为10-16晚间发布窗口内容（第4期检索时点后的补充）与在途事项倒计时更新 · 商机判断仅供参考，行动前请以官方正式文件为准</p>`;
+/* ============ 商机汇总导出（Excel/WPS 可用 CSV，UTF-8 带 BOM） ============ */
+function exportCSV() {
+  const cur = currentIssue();
+  const head = ["日报期次","编号","分级","商机标题","标签","来源单位","来源日期","来源链接","简介内容","事件内容","商机点分析","电信切入建议","行动时限"];
+  const esc = s => {
+    s = (s == null ? "" : String(s)).replace(/"/g, '""');
+    return /[",\r\n]/.test(s) ? '"' + s + '"' : s;
+  };
+  const tierName = { focus: "重点商机", track: "中期跟踪", policy: "政策动向" };
+  const rows = [head.map(esc).join(",")];
+  OPPS.forEach(o => {
+    rows.push([
+      "第" + cur.issue + "期", o.id, tierName[o.tier] || o.tier, o.title, o.tags.join("、"), o.source, o.sourceDate, o.link || "",
+      o.brief, o.event, o.points, (o.actions || []).join("\r\n"), o.todo || ""
+    ].map(esc).join(","));
+  });
+  const csv = "\ufeff" + rows.join("\r\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+  a.download = "楚雄通讯商机日报-" + cur.date + "-商机汇总.csv";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 300);
+}
 </script>
 </body>
 </html>
